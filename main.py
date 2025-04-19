@@ -1,6 +1,6 @@
+import httpx
 from fastapi import FastAPI, Query
 from bs4 import BeautifulSoup
-import httpx
 
 app = FastAPI()
 
@@ -9,9 +9,11 @@ def root():
     return {"message": "Servidor de raspagem online!"}
 
 @app.get("/raspar")
-def raspar_site(url: str = Query(..., description="URL do site a ser raspado")):
+def raspar_intelbras(url: str = Query(..., description="URL do site a ser raspado")):
     try:
-        headers = {"User-Agent": "Mozilla/5.0"}
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        }
         response = httpx.get(url, headers=headers)
         response.raise_for_status()
         soup = BeautifulSoup(response.text, "html.parser")
