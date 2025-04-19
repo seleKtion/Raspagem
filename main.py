@@ -9,7 +9,7 @@ def root():
     return {"message": "Servidor de raspagem online!"}
 
 @app.get("/raspar")
-def raspar_intelbras(url: str = Query(..., description="URL do site a ser raspado")):
+def raspar_intelbras(url: str = Query(..., description="https://www.intelbras.com/pt-br/energia/nobreaks/allproducts")):
     try:
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
